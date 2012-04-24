@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+if [ "$1" == "" ]; then
+	echo "Config file not given using default ./loadtesterl.config"
+  CONFIG="./loadtesterl.config"
+else
+  CONFIG=$1
+fi
+
+cmd="rm -f ebin/*.beam; erlc -o ./ebin src/*.erl"
+echo $cmd && eval $cmd
+
+cmd="erl -rsh ssh -name loadtest_controller@`hostname -i` -pa ./ebin -pa ibrowse/ebin -run loadtest_controller start ${CONFIG}"
+echo $cmd && eval $cmd
+
+cmd="erl -pa ./ebin -run plotter get_plots ./log/current -noshell -s init stop"
+echo $cmd && eval $cmd
+
+cmd="cp ./src/graph.html log/current"
+echo $cmd && eval $cmd
+
+cmd="cp $CONFIG log/current"
+echo $cmd && eval $cmd
+
+echo "output in log/current"
+echo "end"

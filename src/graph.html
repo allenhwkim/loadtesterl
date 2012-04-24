@@ -1,0 +1,27 @@
+<head>
+<script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.crosshair.js"></script>
+<script language="javascript" type="text/javascript" src="plot_data.js"></script>
+<script language="javascript" type="text/javascript">
+  $(function () {
+    counterPlot = $.plot($("#counter_plot"), plotData["counters"], { series :{points:{show:false}, lines:{show:true}}, crosshair: {mode:"x"}, grid: { hoverable: true } });
+    latencyPlot = $.plot($("#latency_plot"), plotData["latency"],  { series :{points:{show:false}, lines:{show:true}}, crosshair: {mode:"x"}, grid: { hoverable: true } }); 
+  })
+</script>
+</head>
+<body>
+    <a href="./loadtesterl.config">config file</a>
+    <table>
+      <tr>
+        <td>
+          <h1>Counters</h1>
+          <div id="counter_plot" style="width:600px;height:300px;"></div>
+        </td>
+        <td>
+          <h1>Latency</h1>
+          <div id="latency_plot" style="width:600px;height:300px;"></div>
+        </td>
+      </tr>
+    </table>
+</body>

@@ -1,0 +1,13 @@
+
+1. modify config
+2. run ./loadtesterl
+3. open log/current/graph.html with a browser, to see the result
+
+Issues:
+this does not work on Mac OS X because of gen_tcp:connect/3 on remote node.
+
+Refernces:
+http://khankamranali.wordpress.com/2011/04/29/erlang-http-client/
+https://bitbucket.org/etc/lhttpc/wiki/Home
+http://www.chrisumbel.com/article/c_from_erlang_curl
+http://openwebload.sourceforge.net/
